@@ -266,33 +266,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UnsuccessfulResponseBody'
-  /post-offices/{post-office-id}:
-    get:
-      tags:
-        - post-office
-      summary: Получить почтовое отделение по ID
-      operationId: getPostOffice
-      parameters:
-        - name: post-office-id
-          in: path
-          description: ID почтового отделения
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: Успех
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/components/schemas/SuccessfulResponseBody'
-                  - properties:
-                      data:
-                        $ref: '#/components/schemas/PostOfficeResponse'
-        '404':
-          $ref: '#/components/responses/postOfficeDoesNotExist'
 components:
   schemas:
     ResponseBody:
