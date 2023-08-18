@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mail-service-db:
+    image: postgres:15.0
+    container_name: mail-service-db
+    ports:
+      - '5432:5432'
+    env_file:
+      - .mail-service-db.env
+    volumes:
+      - ../../db/mail-service:/docker-entrypoint-initdb.d
+      - mail-service-db-data:/var/lib/postgresql/data
+  mail-service:
+    image: mail-app/mail-service:0.0.1-SNAPSHOT
+    container_name: mail-service
+    ports:
+      - '8080:8080'
+    env_file:
+      - .mail-service.env
+    depends_on:
+      - mail-service-db
+  sonarqube:
+    image: sonarqube:9.9.0-community
+    container_name: sonarqube
+    ports:
+      - '9000:9000'
+
+volumes:
+  mail-service-db-data:
+    driver: local
