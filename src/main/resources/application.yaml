@@ -5,9 +5,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/mail-service #${DATASOURCE_URL}
-    username: mail-service-user #${DATASOURCE_USERNAME}
-    password: mail-service-password #${DATASOURCE_PASSWORD}
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
   jpa:
     properties:
       hibernate:
